@@ -26,7 +26,7 @@ Models are ranked on **AUC-PR** (area under the precision-recall curve), which s
 | Derived | `Claim_Submission_Month` extracted from the submission date |
 | Recast | `Procedure_Code` cast from numeric to categorical (discrete billing codes), with NaN preserved |
 | Categorical (9) | `Patient_Gender`, `Diagnosis_Code`, `Procedure_Code`, `Insurance_Type`, `Provider_Specialty`, `Patient_State`, `Visit_Type`, `Chronic_Condition_Flag`, `Claim_Submission_Month` |
-| Numeric (6) | `Patient_Age`, `Claim_Amount`, `Approved_Amount`, `Days_Between_Service_and_Claim`, `Length_of_Stay`, `Prior_Visits_12m` |
+| Numeric (6) | `Patient_Age`, `Claim_Amount`, `Days_Between_Service_and_Claim`, `Length_of_Stay`, `Prior_Visits_12m` |
 
 ## Methodology
 
@@ -114,7 +114,6 @@ Run all cells top to bottom. The dataset downloads automatically through `kaggle
 
 ## Suggested Next Steps
 
-- Resolve the `Approved_Amount` inconsistency and re-run
 - Validate on a real or independently generated claims dataset
 - Add provider-level aggregate features computed without leakage (for example, time-windowed history)
 - Use repeated stratified CV and bootstrap confidence intervals for test metrics
