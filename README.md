@@ -1,4 +1,4 @@
-# Healthcare Claims Fraud Detection: 12-Model Comparison
+# Healthcare Claims Fraud Detection: 12-Model Comparison 
 
 Supervised classification of health insurance claims as fraudulent or legitimate. The notebook compares **12 model configurations** across five algorithms, crossing two design choices:
 
