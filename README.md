@@ -79,13 +79,12 @@ Paired by CV fold, so rows of the same algorithm that differ in one factor isola
 
 Read these before treating the numbers as meaningful.
 
-1. **`Approved_Amount` is used as a feature despite the notebook saying it should be excluded.** The markdown states `Claim_Status` and `Approved_Amount` "should be excluded because the information might not be available while prediction", but `Approved_Amount` is in `num_features1` and therefore in the model inputs. `Claim_Status` is correctly excluded. Either remove `Approved_Amount` from the features or drop the claim that it is excluded, then re-run. This could inflate results, and it undermines the "no information unavailable at prediction time" framing.
-2. **The scores are suspiciously high.** An untuned Logistic Regression reaching ~0.98 AUC-PR on real claims fraud would be extraordinary. This pattern is typical of a synthetic dataset with fraud injected by simple rules. Results here probably reflect how the data was generated, not real-world difficulty, and should not be expected to transfer to production claims data.
-3. **Small positive class.** About 166 fraud cases in the test set. A handful of claims moves precision and recall noticeably, and no confidence intervals are reported on test metrics.
-4. **3-fold CV and a 16-iteration random search** give noisy comparisons. The paired-fold "verdicts" rest on three data points per comparison.
-5. **Thresholds are fixed at 0.5** for precision, recall and F1, and no threshold selection or cost-based analysis is done. For an audit workflow, the cost of a missed fraud vs. a wasted investigation should drive the threshold.
-6. **Provider-level signal is discarded.** `Provider_ID` is dropped, and `Number_of_Claims_Per_Provider_Monthly` is excluded from the numeric features without explanation. Provider behaviour is usually the strongest fraud signal in real claims data.
-7. **KNN performs poorly** (AUC-PR 0.58). It is likely hurt by one-hot / ordinal-encoded categoricals in a distance metric and is included mainly as a baseline.
+1. **The scores are suspiciously high.** An untuned Logistic Regression reaching ~0.98 AUC-PR on real claims fraud would be extraordinary. This pattern is typical of a synthetic dataset with fraud injected by simple rules. Results here probably reflect how the data was generated, not real-world difficulty, and should not be expected to transfer to production claims data.
+2. **Small positive class.** About 166 fraud cases in the test set. A handful of claims moves precision and recall noticeably, and no confidence intervals are reported on test metrics.
+3. **3-fold CV and a 16-iteration random search** give noisy comparisons. The paired-fold "verdicts" rest on three data points per comparison.
+4. **Thresholds are fixed at 0.5** for precision, recall and F1, and no threshold selection or cost-based analysis is done. For an audit workflow, the cost of a missed fraud vs. a wasted investigation should drive the threshold.
+5. **Provider-level signal is discarded.** `Provider_ID` is dropped, and `Number_of_Claims_Per_Provider_Monthly` is excluded from the numeric features without explanation. Provider behaviour is usually the strongest fraud signal in real claims data.
+6. **KNN performs poorly** (AUC-PR 0.58). It is likely hurt by one-hot / ordinal-encoded categoricals in a distance metric and is included mainly as a baseline.
 
 ## Requirements
 
